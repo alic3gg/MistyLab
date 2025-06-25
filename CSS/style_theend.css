@@ -1,0 +1,142 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+body {
+    background-image:url(../IMG/bg_theend.png);
+    background-repeat:no-repeat;
+    background-size:cover;
+    display:flex;
+    justify-content:space-around;
+    flex-direction:column;
+}
+@font-face{
+    font-family:GothicByte;
+    src:url(../FONT/GothicByte.ttf);
+}
+@font-face{
+    font-family:OrangeKid;
+    src:url(../FONT/Orange\ Kid.otf);
+}
+@font-face{
+    font-family:PixelGame;
+    src:url(../FONT/Pixel\ Game.otf);
+}
+#title{
+    height:auto;
+    width:auto;
+    display: flex;
+    margin: 0 auto;
+    margin-top: 50px;
+    margin-bottom:30px;
+    justify-content: center;
+}
+.content{
+    margin-bottom:30px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+.first{
+    display:flex;
+    justify-content: flex-start;
+    flex-direction:column;
+    margin-right:70px;
+}
+#end{
+    color:bisque;
+    font-size:100px;
+    font-family:PixelGame;
+    text-shadow: 
+        0 0 1px #8b007f,
+        0 0 4px #8b007f,
+        0 0 6px #8b007f,
+        0 0 8px #8b007f;
+    transition: all 0.3s ease-in-out;
+}
+#parabens{
+    color:bisque;
+    font-size:45px;
+    font-family:GothicByte;
+    margin-bottom:20px;
+    text-shadow: 
+        0 0 1px #811a00,
+        0 0 4px #811a00,
+        0 0 6px #811a00,
+        0 0 8px #811a00;
+    transition: all 0.3s ease-in-out;
+}
+#resto{
+    color:bisque;
+    font-size:35px;
+    font-family:OrangeKid;
+    text-shadow: 
+        0 0 1px #208f0b,
+        0 0 4px #208f0b,
+        0 0 6px #208f0b,
+        0 0 8px #208f0b;
+    transition: all 0.3s ease-in-out;
+}
+.second{
+    display:flex;
+    margin-left:15px;
+    box-shadow: 
+        0 0 5px #000000,
+        0 0 10px #000000,
+        0 0 20px #000000,
+        0 0 40px #000000;
+    transition: all 0.3s ease-in-out;
+}
+#button{
+    height:100%;
+    width:50%;
+    display:flex;
+    justify-content: center;
+    align-items:flex-end;
+    flex-direction: column;
+}
+#btn{
+    color:#361302;
+    font-size:20px;
+    font-family:OrangeKid;
+    background-image:url(../IMG/btn_final.png);
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-color: rgba(255, 255, 255, 0);
+    height:50px;
+    width:160px;
+    display: block;
+    margin: 0 auto;
+    margin-top: 20px;
+    border:none;
+    padding: 0;
+    background-clip: padding-box;
+}
+#btn:hover{
+    color:bisque;
+    font-size:20px;
+    font-family:OrangeKid;
+    font-style:bold;
+    background-image:url(../IMG/btn_final.png);
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-color: rgba(0, 0, 0, 0.848);
+    height:50px;
+    width:160px;
+    display: block;
+    margin: 0 auto;
+    margin-top: 20px;
+    border:none;
+    box-shadow: 
+        0 0 5px #000000,
+        0 0 10px #000000,
+        0 0 20px #000000,
+        0 0 40px #000000;
+    transition: all 0.3s ease-in-out;
+    text-shadow: 
+        0 0 1px #ffe4c4,
+        0 0 4px #ffe4c4,
+        0 0 6px #ffe4c4,
+        0 0 8px #ffe4c4;
+    transition: all 0.3s ease-in-out;
+}

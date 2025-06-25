@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Misty Lab - The End</title>
+    <link rel="icon" href="IMG/icon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="CSS/style_theend.css">
+    <script>
+        localStorage.removeItem("tempoGlobal");
+        window.location.href = "index.html";
+    </script>
+</head>
+<body>
+    <div id="title">
+        <img src="IMG/title.png">
+    </div>
+    <div class="content">
+        <div class="first">
+            <p id="end">THE END</p>
+            <p id="parabens">Parabéns!</p>
+            <p id="resto">Dr.Juno Nox conseguiu fugir dos monstros <br> 
+                que o perseguiam! <br>
+                Agora, salvo das consequências de seu <br>
+                passado, ele pode trilhar um novo caminho!
+            </p>
+        </div>
+        <div class="second">
+            <img src="IMG/final_img.png">
+        </div>
+    </div>
+    <div class="button">
+        <button id="btn" onclick="window.location.href='index.html'">JOGAR NOVAMENTE</button>
+    </div>
+</body>
+</html>

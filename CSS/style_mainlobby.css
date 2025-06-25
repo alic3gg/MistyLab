@@ -1,0 +1,117 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+body {
+    background-image:url(../IMG/bg_mainlobby.png);
+    background-repeat:no-repeat;
+    background-size:cover;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    flex-direction:row;
+}
+@font-face{
+    font-family:GothicByte;
+    src:url(../FONT/GothicByte.ttf);
+}
+@font-face{
+    font-family:OrangeKid;
+    src:url(../FONT/Orange\ Kid.otf);
+}
+@font-face{
+    font-family:PixelGame;
+    src:url(../FONT/Pixel\ Game.otf);
+}
+#first{
+    height:850px;
+    width:600px;
+    display: flex;
+    justify-content:space-around;
+    align-items:center;
+    flex-direction:column;
+    background-color: #0000007b;
+    box-shadow: 
+        0 0 60px #00000052,
+        0 0 70px #00000052,
+        0 0 80px #00000052,
+        0 0 90px #00000031;
+    transition: all 0.3s ease-in-out;
+}
+#title{
+    height:250px;
+    width:150px;
+    display: flex;
+    margin-top: 30px;
+    margin-bottom:20px;
+    justify-content: flex-start;
+}
+#mainlobby{
+    height:70px;
+    display: flex;
+    margin-top:60px;
+    margin-right:140px;
+    margin-bottom:-30px;
+    justify-content:flex-start;
+}
+#buttons{
+    height:100%;
+    width:50%;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    flex-direction: column;
+}
+#btn_lobby{
+    color:#752805;
+    font-size:40px;
+    font-family:OrangeKid;
+    background-image:url(../IMG/btn_lobby.png);
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-color: rgba(255, 255, 255, 0);
+    height:100px;
+    width:320px;
+    display: block;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom:30px;
+    border:none;
+    padding: 0;
+    background-clip: padding-box;
+}
+#btn_lobby:hover{
+    color:bisque;
+    font-size:40px;
+    font-family:OrangeKid;
+    font-style:bold;
+    background-image:url(../IMG/btn_lobby.png);
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-color: rgba(0, 0, 0, 0.848);
+    height:100px;
+    width:320px;
+    display: block;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom:30px;
+    border:none;
+    box-shadow: 
+        0 0 5px #000000,
+        0 0 10px #000000,
+        0 0 20px #000000,
+        0 0 40px #000000;
+    transition: all 0.3s ease-in-out;
+    text-shadow: 
+        0 0 1px #811a00,
+        0 0 4px #811a00,
+        0 0 6px #811a00,
+        0 0 8px #811a00;
+    transition: all 0.3s ease-in-out;
+}
+#img{
+    height:100px;
+    width:100px;
+    margin-left:10px;
+    margin-top:20px;
+}

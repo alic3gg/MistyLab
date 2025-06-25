@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Misty Lab - The Library</title>
+    <link rel="icon" href="IMG/icon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="CSS/style_thelibrary.css" />
+    <script src="JS/teclado.js"></script>
+    <script src="JS/pause.js"></script>
+    <script src="JS/spritesheet.js"></script>
+    <script src="JS/animacao.js"></script>
+    <script src="JS/c1.js"></script>
+    <script src="JS/inimigo.js"></script>
+    <script src="JS/bg_matriz_library.js"></script>
+    <script src="JS/background.js"></script>
+    <script src="JS/timer.js"></script>
+  </head>
+  <body>
+    <div id="title">
+      <img src="IMG/title.png" />
+    </div>
+    <div id="thelibrary">
+      <img src="IMG/logo_library.png" />
+    </div>
+    <div id="timer_style">
+      <p>Timer: <span id="timer">00:00:00</span></p>
+      <p id="lives">
+        Vidas:
+        <span id="coracao1"><img src="IMG/heart_full.png" /></span>
+        <span id="coracao2"><img src="IMG/heart_full.png" /></span>
+        <span id="coracao3"><img src="IMG/heart_full.png" /></span>
+      </p>
+    </div>
+    <canvas id="libraryCanvas" width="848" height="424"></canvas>
+    <div id="buttons">
+      <button id="btn" onclick="window.location.href='theentrancehall.html'">
+        IR PARA O HALL DE ENTRADA
+      </button>
+    </div>
+    <div
+      id="pauseOverlay"
+      style="
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        font-family: Arial, sans-serif;
+        font-size: 48px;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 10;
+      "
+    >
+      PAUSADO
+    </div>
+    <audio
+      id="coletarAudio"
+      src="SND/shine-6-268910.mp3"
+      preload="auto"
+    ></audio>
+    <img id="img" src="IMG/icon.ico" />
+    <script>
+      let canvas = document.getElementById("libraryCanvas");
+      let context = canvas.getContext("2d");
+      context.imageSmoothingEnabled = false;
+      //
+      let teclado = new Teclado(document);
+      let fundo = new Image();
+      let imgDrJunoNox = new Image();
+      //
+      let fundoCarregado = false;
+      let personagemCarregado = false;
+      //
+      fundo.onload = () => {
+        fundoCarregado = true;
+        tentarIniciar();
+      };
+      //
+      imgDrJunoNox.onload = () => {
+        personagemCarregado = true;
+        tentarIniciar();
+      };
+      //
+      fundo.src = "IMG/canvas_library.png";
+      imgDrJunoNox.src = "IMG/sprite_DrJunoNox.png";
+      //
+      let chaveImg = new Image();
+      chaveImg.src = "IMG/key_inlibrary.png";
+      //
+      let chaveColetada = false;
+      let chaveX = 226 * 10.5;
+      let chaveY = 6 * 18.5;
+      //
+      function tentarIniciar() {
+        if (!fundoCarregado || !personagemCarregado) return;
+        //
+        let animacao = new Animacao(context, fundo);
+        let c1 = new DrJunoNox(context, teclado, imgDrJunoNox);
+        c1.x = 2485;
+        c1.y = 980;
+        //
+        animacao.novoSprite(c1);
+        animacao.definirCamera(c1);
+        //
+        window.atualizarCoracoes = function (vida) {
+          for (let i = 1; i <= 3; i++) {
+            const coracao = document.getElementById("coracao" + i);
+            if (i <= vida) {
+              coracao.innerHTML = '<img src="IMG/heart_full.png" />';
+            } else {
+              coracao.innerHTML = '<img src="IMG/heart_empty.png" />';
+            }
+          }
+        };
+        //
+        let imgInimigo = new Image();
+        imgInimigo.src = "IMG/sprite_ThobyTovarish.png";
+        let imgInimigo1 = new Image();
+        imgInimigo1.src = "IMG/sprite_OlgaUmbra.png";
+        let imgInimigo2 = new Image();
+        imgInimigo2.src = "IMG/sprite_LedOsmeyer.png";
+        //
+        imgInimigo.onload = () => {
+          // Múltiplos inimigos com caminhos diferentes
+          let inimigos = [
+            new Enemy(
+              caminhoInimigo[0].x * 16,
+              caminhoInimigo[0].y * 16,
+              caminhoInimigo,
+              imgInimigo,
+              context
+            ),
+            new Enemy(
+              caminhoInimigo1[0].x * 16,
+              caminhoInimigo1[0].y * 16,
+              caminhoInimigo1,
+              imgInimigo1,
+              context
+            ),
+            new Enemy(
+              caminhoInimigo2[0].x * 16,
+              caminhoInimigo2[0].y * 16,
+              caminhoInimigo2,
+              imgInimigo2,
+              context
+            ),
+          ];
+          //
+          inimigos.forEach((inimigo) => {
+            animacao.novoSprite({
+              atualizar() {
+                inimigo.atualizar();
+
+                // Colisão com o jogador
+                let dx = inimigo.x - c1.x;
+                let dy = inimigo.y - c1.y;
+                let distancia = Math.sqrt(dx * dx + dy * dy);
+
+                if (distancia < 28) {
+                  c1.levarDano();
+                }
+              },
+              desenhar() {
+                inimigo.desenhar(context);
+              },
+            });
+          });
+        };
+        //
+        let cenario = new Cenario(context, fundo, 16, mapaTeste);
+        animacao.novoSprite({
+          atualizar() {},
+          desenhar() {
+            cenario.desenhar(
+              animacao.camera.x,
+              animacao.camera.y,
+              animacao.camera.zoom
+            );
+          },
+        });
+        //
+        let coracaoImg = new Image();
+        coracaoImg.src = "IMG/heart_full.png";
+        // Lista de corações (x, y) multiplicados pelos mesmos fatores que você usou para a chave
+        let coracoes = [
+          { x: 152 * 10.5, y: 36 * 18.5, coletado: false },
+          { x: 86 * 10.5, y: 40 * 18.5, coletado: false },
+        ];
+
+        animacao.novoSprite({
+          atualizar() {
+            if (PauseController.pausado) return;
+
+            coracoes.forEach((c) => {
+              if (c.coletado) return;
+
+              let dx = c1.x - c.x;
+              let dy = c1.y - c.y;
+              let distancia = Math.sqrt(dx * dx + dy * dy);
+
+              if (distancia < 24) {
+                if (c1.vida < 3) {
+                  c1.vida++;
+                  atualizarCoracoes(c1.vida);
+                }
+
+                // TOCAR SOM de coleta mesmo se vida cheia
+                const audio = document.getElementById("coletarAudio");
+                if (audio) {
+                  audio
+                    .play()
+                    .catch((e) =>
+                      console.warn("Erro ao tocar som de coração:", e)
+                    );
+                }
+
+                c.coletado = true;
+              }
+            });
+          },
+          desenhar() {
+            coracoes.forEach((c) => {
+              if (!c.coletado) {
+                context.drawImage(coracaoImg, c.x, c.y, 16, 16);
+              }
+            });
+          },
+        });
+
+        animacao.novoSprite({
+          atualizar() {
+            if (chaveColetada) return;
+
+            let dx = c1.x - chaveX;
+            let dy = c1.y - chaveY;
+            let distancia = Math.sqrt(dx * dx + dy * dy);
+
+            if (distancia < 24) {
+              chaveColetada = true;
+              document.getElementById("coletarAudio").play();
+              document.getElementById("buttons").style.display = "block";
+            }
+          },
+          desenhar() {
+            if (!chaveColetada) {
+              context.drawImage(chaveImg, chaveX, chaveY, 96 / 2, 56 / 2);
+            }
+          },
+        });
+
+        canvas.addEventListener("click", function (evt) {
+          if (!animacao.camera.target || !animacao.camera.target.morto) return;
+
+          let rect = canvas.getBoundingClientRect();
+          let mouseX =
+            (evt.clientX - rect.left) / animacao.camera.zoom +
+            animacao.camera.x;
+          let mouseY =
+            (evt.clientY - rect.top) / animacao.camera.zoom + animacao.camera.y;
+
+          let btn = animacao.botaoMorte;
+          if (
+            btn &&
+            mouseX >= btn.x &&
+            mouseX <= btn.x + btn.largura &&
+            mouseY >= btn.y &&
+            mouseY <= btn.y + btn.altura
+          ) {
+            localStorage.removeItem("tempoGlobal");
+            window.location.href = "index.html";
+          }
+        });
+        PauseController.init(); // ADICIONAR AQUI
+        //
+        animacao.ligar();
+      }
+    </script>
+  </body>
+</html>

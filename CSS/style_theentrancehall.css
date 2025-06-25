@@ -1,0 +1,145 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+body {
+    background-image:url(../IMG/bg_theentrancehall.png);
+    background-repeat:no-repeat;
+    background-size:cover;
+}
+@font-face{
+    font-family:GothicByte;
+    src:url(../FONT/GothicByte.ttf);
+}
+@font-face{
+    font-family:OrangeKid;
+    src:url(../FONT/Orange\ Kid.otf);
+}
+@font-face{
+    font-family:PixelGame;
+    src:url(../FONT/Pixel\ Game.otf);
+}
+#title{
+    height: 80px;
+    width: 890px;
+    display: flex;
+    margin: 0 auto;
+    margin-top: 30px;
+    margin-bottom:20px;
+    justify-content: center;
+}
+#hallCanvas {
+    background: #000000;
+    display: block;
+    margin: 0 auto;
+    box-shadow: 
+        0 0 10px #8b007f,
+        0 0 20px #8b007f,
+        0 0 40px #8b007f,
+        0 0 80px #8b007f;
+    transition: all 0.3s ease-in-out;
+}
+#entrancehall{
+    display: flex;
+    margin: 0 auto;
+    margin-bottom: 25px;
+    justify-content: center;
+}
+#timer_style{
+    height:30px;
+    width:848px;
+    color:bisque;
+    font-size:25px;
+    font-family:OrangeKid;
+    margin:0 auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+}
+#timer_style img{
+    height:30px;
+    width:30px;
+}
+#buttons{
+    height:50px;
+    width:850px;
+    display:flex;
+    margin: 0 auto;
+    margin-top:20px;
+    justify-content: center;
+    align-items: center;
+}
+#btn{
+    color:#752805;
+    font-size:20px;
+    font-family:OrangeKid;
+    background-image:url(../IMG/btn.png);
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-color: rgba(255, 255, 255, 0);
+    height:50px;
+    width:160px;
+    display: block;
+    margin: 0 auto;
+    margin-top: 20px;
+    border:none;
+    padding: 0;
+    background-clip: padding-box;
+}
+#btn:hover{
+    color:bisque;
+    font-size:20px;
+    font-family:OrangeKid;
+    font-style:bold;
+    background-image:url(../IMG/btn.png);
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-color: rgba(0, 0, 0, 0.848);
+    height:50px;
+    width:160px;
+    display: block;
+    margin: 0 auto;
+    margin-top: 20px;
+    border:none;
+    box-shadow: 
+        0 0 5px #000000,
+        0 0 10px #000000,
+        0 0 20px #000000,
+        0 0 40px #000000;
+    transition: all 0.3s ease-in-out;
+    text-shadow: 
+        0 0 1px #8b007f,
+        0 0 4px #8b007f,
+        0 0 6px #8b007f,
+        0 0 8px #8b007f;
+    transition: all 0.3s ease-in-out;
+}
+canvas{
+    image-rendering: pixelated;
+}
+
+#morteDisplay button {
+  font-size: 18px;
+  padding: 10px 20px;
+  background-color: #aa0000;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+#morteDisplay button:hover {
+  background-color: #ff0000;
+}
+
+#buttons {
+  display: none;
+}
+#img{
+    height:100px;
+    width:100px;
+    display:block;
+    margin:0 auto;
+    margin-top:20px;
+    margin-bottom:20px;
+}
+

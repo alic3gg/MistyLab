@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Misty Lab - The Lab</title>
+    <link rel="icon" href="IMG/icon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="CSS/style_thelab.css" />
+
+    <!-- Scripts do jogo -->
+    <script src="JS/teclado.js"></script>
+    <script src="JS/pause.js"></script>
+    <script src="JS/spritesheet.js"></script>
+    <script src="JS/animacao.js"></script>
+    <script src="JS/c1.js"></script>
+    <script src="JS/bg_matriz_lab.js"></script>
+    <script src="JS/background.js"></script>
+    <script src="JS/timer.js"></script>
+    <script src="JS/cutscenes.js"></script>
+  </head>
+
+  <body>
+    <div id="title">
+      <img src="IMG/title.png" />
+    </div>
+    <div id="thelab">
+      <img src="IMG/logo_lab.png" />
+    </div>
+
+    <div id="timer_style">
+      <p>Timer: <span id="timer">00:00:00</span></p>
+      <p id="lives">
+        Vidas:
+        <span id="life1"><img src="IMG/heart_full.png" /></span>
+        <span id="life2"><img src="IMG/heart_full.png" /></span>
+        <span id="life3"><img src="IMG/heart_full.png" /></span>
+      </p>
+    </div>
+
+    <canvas id="labCanvas" width="848" height="424"></canvas>
+
+    <div id="buttons">
+      <button id="btn" onclick="window.location.href='thelibrary.html'">
+        ENTRE NA BIBLIOTECA
+      </button>
+    </div>
+
+    <div
+      id="pauseOverlay"
+      style="
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        font-family: Arial, sans-serif;
+        font-size: 48px;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 10;
+      "
+    >
+      PAUSADO
+    </div>
+    <audio
+      id="coletarAudio"
+      src="SND/shine-6-268910.mp3"
+      preload="auto"
+    ></audio>
+    <img id="img" src="IMG/icon.ico" />
+    <script>
+      const canvas = document.getElementById("labCanvas");
+      const context = canvas.getContext("2d");
+      context.imageSmoothingEnabled = false;
+
+      let teclado = new Teclado(document);
+      let fundo = new Image();
+      let imgDrJunoNox = new Image();
+
+      let fundoCarregado = false;
+      let personagemCarregado = false;
+
+      fundo.onload = () => {
+        fundoCarregado = true;
+      };
+      imgDrJunoNox.onload = () => {
+        personagemCarregado = true;
+      };
+
+      fundo.src = "IMG/canvas_lab.png";
+      imgDrJunoNox.src = "IMG/sprite_DrJunoNox.png";
+
+      let chaveImg = new Image();
+      chaveImg.src = "IMG/key_inlab.png";
+
+      let chaveColetada = false;
+      let chaveX = 233.5 * 10.5;
+      let chaveY = 58 * 18.5;
+
+      // Cutscene simples (4 imagens com fade-in)
+      const cutscene = new SimpleCutscene(
+        context,
+        [
+          "IMG/cutscene_cena1.png",
+          "IMG/cutscene_cena2.png",
+          "IMG/cutscene_cena3.png",
+          "IMG/cutscene_cena4.png",
+        ],
+        () => {
+          PauseController.pausado = false;
+          iniciarJogo();
+        }
+      );
+      PauseController.pausado = true;
+      cutscene.loadImages(() => {
+        function animate() {
+          cutscene.updateAndDraw();
+          if (!cutscene.finished) {
+            requestAnimationFrame(animate);
+          }
+        }
+        animate();
+      });
+      //
+      function iniciarJogo() {
+        function tentarIniciar() {
+          if (!fundoCarregado || !personagemCarregado) return;
+
+          let animacao = new Animacao(context, fundo);
+          let c1 = new DrJunoNox(context, teclado, imgDrJunoNox);
+          c1.x = 1250;
+          c1.y = 400;
+
+          animacao.novoSprite(c1);
+          animacao.definirCamera(c1);
+
+          let cenario = new Cenario(context, fundo, 16, mapaTeste);
+          animacao.novoSprite({
+            atualizar() {},
+            desenhar() {
+              cenario.desenhar(
+                animacao.camera.x,
+                animacao.camera.y,
+                animacao.camera.zoom
+              );
+            },
+          });
+
+          animacao.novoSprite({
+            atualizar() {
+              if (chaveColetada) return;
+
+              let dx = c1.x - chaveX;
+              let dy = c1.y - chaveY;
+              let distancia = Math.sqrt(dx * dx + dy * dy);
+
+              if (distancia < 24) {
+                chaveColetada = true;
+                document.getElementById("coletarAudio").play();
+                document.getElementById("buttons").style.display = "block";
+              }
+            },
+            desenhar() {
+              if (!chaveColetada) {
+                context.drawImage(chaveImg, chaveX, chaveY, 96 / 2, 56 / 2);
+              }
+            },
+          });
+
+          PauseController.init();
+          animacao.ligar();
+        }
+
+        // Espera as imagens do jogo estarem carregadas
+        if (!fundoCarregado || !personagemCarregado) {
+          const tentar = setInterval(() => {
+            if (fundoCarregado && personagemCarregado) {
+              clearInterval(tentar);
+              tentarIniciar();
+            }
+          }, 100);
+        } else {
+          tentarIniciar();
+        }
+      }
+    </script>
+  </body>
+</html>

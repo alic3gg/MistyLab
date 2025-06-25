@@ -1,0 +1,214 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+body {
+    height:5000px;
+    width:100%;
+    background-color: rgb(219, 200, 177);
+    display:flex;
+    justify-content:flex-start;
+    flex-direction:column;
+}
+@font-face{
+    font-family:GothicByte;
+    src:url(../FONT/GothicByte.ttf);
+}
+@font-face{
+    font-family:OrangeKid;
+    src:url(../FONT/Orange\ Kid.otf);
+}
+@font-face{
+    font-family:PixelGame;
+    src:url(../FONT/Pixel\ Game.otf);
+}
+#title{
+    height:200px;
+    width:auto;
+    color:bisque;
+    font-size:50px;
+    font-family:PixelGame;
+    margin-bottom:10px;
+    padding-bottom:30px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+}
+#aim{
+    height:750px;
+    width:auto;
+    background-image:url(../IMG/instructions_bg.png);
+    background-repeat:no-repeat;
+    background-size:cover;
+    color:bisque;
+    font-size:30px;
+    font-family:OrangeKid;
+    padding:60px;
+    padding-top:1px;
+    box-shadow: 
+        0 0 10px #250b03,
+        0 0 20px #250b03,
+        0 0 40px #250b03,
+        0 0 80px #250b03;
+    transition: all 0.3s ease-in-out;
+    display:flex;
+    justify-content:center;
+    align-content:space-around;
+    flex-direction:column;
+}
+#aim:hover{
+    height:750px;
+    width:auto;
+    background-image:url(../IMG/instructions_bg.png);
+    background-repeat:no-repeat;
+    background-size:cover;
+    color:bisque;
+    font-size:30px;
+    font-family:OrangeKid;
+    padding:60px;
+    padding-top:1px;
+    box-shadow: 
+        0 0 10px #250b03,
+        0 0 20px #250b03,
+        0 0 40px #250b03,
+        0 0 80px #250b03;
+    transition: all 0.3s ease-in-out;
+    text-shadow: 
+        0 0 1px #811a00,
+        0 0 4px #811a00,
+        0 0 6px #811a00,
+        0 0 8px #811a00;
+    transition: all 0.3s ease-in-out;
+    display:flex;
+    justify-content:center;
+    align-content:space-around;
+    flex-direction:column;
+}
+#button{
+    height:70px;
+    width:auto;
+    display:flex;
+    justify-content:flex-start;
+    align-items:flex-start;
+    margin-bottom:20px;
+}
+#btn{
+    color:#752805;
+    font-size:20px;
+    font-family:OrangeKid;
+    background-image:url(../IMG/btn_home.png);
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-color: rgba(255, 255, 255, 0);
+    height:50px;
+    width:160px;
+    display: block;
+    margin: 0 auto;
+    margin-top: 20px;
+    border:none;
+    padding: 0;
+    background-clip: padding-box;
+}
+#btn:hover{
+    color:#752805;
+    font-size:20px;
+    font-family:OrangeKid;
+    background-image:url(../IMG/btn_home_hover.png);
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-color: rgba(255, 255, 255, 0);
+    height:50px;
+    width:160px;
+    display: block;
+    margin: 0 auto;
+    margin-top: 20px;
+    border:none;
+    padding: 0;
+    background-clip: padding-box;
+}
+.subtitle{
+    color:#250b03;
+    font-size:85px;
+    font-family:PixelGame;
+    margin-bottom:30px;
+    text-shadow: 
+        0 0 5px bisque,
+        0 0 10px bisque,
+        0 0 15px bisque,
+        0 0 20px bisque;
+    transition: all 0.3s ease-in-out;
+}
+.subtitle2{
+    color:#250b03;
+    font-size:85px;
+    font-family:PixelGame;
+    margin-top:40px;
+    text-shadow:
+        0 0 5px bisque,
+        0 0 10px bisque,
+        0 0 15px bisque,
+        0 0 20px bisque;
+    transition: all 0.3s ease-in-out;
+}
+#keys{
+    height:1100px;
+    width:auto;
+    color:#250b03;
+    font-size:30px;
+    font-family:OrangeKid;
+    padding:100px;
+    display:flex;
+    justify-content:center;
+    align-content:space-around;
+    flex-direction:column;
+}
+#keys2{
+    height:3000px;
+    width:auto;
+    color:#250b03;
+    font-size:30px;
+    font-family:OrangeKid;
+    padding:100px;
+    display:flex;
+    justify-content:center;
+    align-content:space-around;
+    flex-direction:column;
+}
+.complement{
+    color:#811a00;
+    font-size:45px;
+    font-family:GothicByte;
+    margin-top:50px;
+}
+.complement_subtitle{
+    color:#250b03;
+    font-size:40px;
+    font-weight:bold;
+    font-family:OrangeKid;
+}
+#space{
+    height:100px;
+    width:300px;
+}
+.images{
+    height:20%;
+    width:90%;
+    margin-top:40px;
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+}
+.infos{
+    display:flex;
+    flex-direction:row;
+}
+#img{
+    height:400px;
+    width:800px;
+}
+#img2{
+    height:100px;
+    width:100px;
+    margin-left:45%;
+}
