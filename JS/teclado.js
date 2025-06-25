@@ -3,7 +3,6 @@ let W = 87; // Tecla para movimentação para cima
 let A = 65; // Tecla para movimentação à esquerda
 let S = 83; // Tecla para movimentação para baixo
 let D = 68; // Tecla para movimentação à direita
-let SHIFT = 16; // Tecla de interação com objetos
 
 function Teclado(elemento) {
   this.elemento = elemento;
